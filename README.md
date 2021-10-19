@@ -1,1 +1,1 @@
-# NCUHOMEdemo-small_shooting
+# Just an easy demo

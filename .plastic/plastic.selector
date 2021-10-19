@@ -1,0 +1,4 @@
+repository "NCUHOMEdemo-small_shooting@ssl://mygoddess007700@sh03-plasticscm.unity.cn:8787"
+  path "/"
+    smartbranch "/main/mygoddess007700" 
+     
