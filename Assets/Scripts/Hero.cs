@@ -5,11 +5,13 @@ public class Hero : MonoBehaviour
     public enum eMode{idle, shoot, move};
 
     [Header("Set In Spector")]
-    public float speed = 5f;
-    public int maxHealth = 4;
+    public float speed = 0.5f;
+    public int maxHealth = 3;
     public float invincibleDuration = 0.5f;
-    public int score = 0;
     public int maxBulletNum = 5;
+    public Material groundMat;
+
+    public int score = 0;
 
 
     [Header("Set Dynamically")]
@@ -20,7 +22,7 @@ public class Hero : MonoBehaviour
     public bool invincible = false;
     public bool hasGrappler = false;
     public int bulletNum;
-    public Vector2 dir = Vector2.zero;
+    public Vector2 dir = Vector2.zero; //鼠标位置单位化
 
     [SerializeField]
     private int _health;
@@ -59,6 +61,7 @@ public class Hero : MonoBehaviour
 
     void Awake() 
     {
+        groundMat.color = Color.yellow;
         anim = GetComponent<Animator>();
         sRend = GetComponent<SpriteRenderer>();
         inRoom = GetComponent<InRoom>();
@@ -69,7 +72,7 @@ public class Hero : MonoBehaviour
     {
         pistolSprite = new Sprite[2];
         rotationCenter = transform.Find("RotationCenter");
-        heroPistol = rotationCenter.Find("HeroPistol");
+        heroPistol = rotationCenter.Find("Pistol");
         pistolSpriteRender = heroPistol.GetComponent<SpriteRenderer>();
 
         pistolSprite[0] = Resources.Load<Sprite>("RightPistol");
@@ -87,14 +90,30 @@ public class Hero : MonoBehaviour
 
     void Update() 
     {
-        //确认是否受击，如果受击施加无敌并扣血
+        if(Health == 0)
+        {
+            groundMat.color = Color.white;
+            GUIPanel.game = -1;
+        }
+        //确认是否受击，如果受击施加无敌
         if(invincible && Time.time > invincibleDone)
+        {
             invincible = false;
-        sRend.color = invincible ? Color.red : Color.white;
+            sRend.enabled = true;
+        }
+
+        if(invincible)
+        {
+            if(((int)(Time.time/0.08))%2 == 0)
+                sRend.enabled = false;
+            else
+                sRend.enabled = true;
+        }
 
         //根据鼠标位置更改人的左右与枪的左右与枪的旋转
-        //计算鼠标位置
-        dir = Main.mousePos2D() - (Vector2)transform.position;
+        //计算鼠标位置(单位化)
+        dir = mousePos2D() - (Vector2)transform.position;
+        dir.Normalize();
         if(dir.x > 0)
         {
             facing = 1;
@@ -122,28 +141,39 @@ public class Hero : MonoBehaviour
 
     void OnTriggerEnter(Collider colld) 
     {
-        if(colld.tag != "Enemy")
+        if(invincible) 
         {
-            if(invincible) 
-                return;
+            Destroy(colld.gameObject);
+            return;
         }
-        invincible = true;
-        invincibleDone = Time.time + invincibleDuration;
 
-        Enemy enemy = colld.gameObject.GetComponent<Enemy>();
-        Weapon weapon = colld.gameObject.GetComponent<Weapon>();
-        if(enemy != null)
+        if(colld.gameObject.tag == "Enemy")
         {
+            invincibleDone = Time.time + invincibleDuration;
+            invincible = true;
+            Enemy enemy = colld.gameObject.GetComponent<Enemy>();
             Health -= enemy.closeDamage;
+            Destroy(colld.gameObject);
         }
-        else if(weapon == null)
+        else if(colld.gameObject.tag == "EnemyBullet")
         {
-            Health -= weapon.damage; 
+            invincibleDone = Time.time + invincibleDuration;
+            invincible = true;
+            Bullet bullet = colld.gameObject.GetComponent<Bullet>();
+            Health -= bullet.Damage;
+            Destroy(colld.gameObject);
         }
         else
         {
             return;
-        }
-        Destroy(colld.gameObject);
+        } 
+    }
+
+    public Vector2 mousePos2D()
+    {
+        Vector3 mousePos = Input.mousePosition;
+        mousePos.z = 0;
+        mousePos = Camera.main.ScreenToWorldPoint(mousePos);
+        return (Vector2)mousePos;
     }
 }

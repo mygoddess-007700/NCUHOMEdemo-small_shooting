@@ -1,19 +1,16 @@
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public abstract class Bullet : MonoBehaviour
 {
     public enum BulletMode{idle, gOut, gInHit, gMiss};
-
-    [Header("Set In Inspector")]
-    public int damage = 1;
-    public float speed = 10f;
+    public abstract int Damage{get; set;}
 
     [Header("Set Dynamically")]
     public BulletMode mode = BulletMode.idle;
     public Vector2 dir = Vector2.zero;
-
-    private Vector2 flyDirection;
-    private Rigidbody rigid;
+    public float liveDone;
+    protected float generatedTime = 0;
+    protected Rigidbody rigid;
 
     protected virtual void Awake() 
     {
@@ -21,28 +18,20 @@ public class Bullet : MonoBehaviour
         rigid.velocity = Vector3.zero;
     }
 
+    protected virtual void Start() 
+    {
+        generatedTime = Time.time;
+    }
+
     protected virtual void Update() 
     {
-        if(mode == BulletMode.gOut)
-        {
-            rigid.velocity = dir * speed;
-            transform.parent = null;
-        }
-
-    }
-
-    private void destroyBullet()
-    {
-        
-    }
-
-    protected virtual void OnCollisionEnter(Collision coll) 
-    {
-        
+        if(Time.time-generatedTime > liveDone)
+            Destroy(gameObject);
     }
 
     protected virtual void OnTriggerEnter(Collider colld) 
     {
-        
+        if(colld.gameObject.tag == "Untagged")
+            Destroy(gameObject);    
     }
 }

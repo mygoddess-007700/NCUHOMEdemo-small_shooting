@@ -1,18 +1,33 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class CloseEnemy : MonoBehaviour
+public class CloseEnemy : Enemy
 {
-    // Start is called before the first frame update
-    void Start()
+    [Header("Set In Inspector: CloseEnemy")]
+    public float speed = 1f;
+    public int damage = 1;
+
+    protected override void Update() 
     {
-        
+        base.Update();
+        mode = eMode.move;
+
+        rigid.velocity = dir * speed;
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnCollisionEnter(Collision coll) 
     {
-        
+        invincibleDone = Time.time-generatedTime + invincibleDuration;
+        if(coll.gameObject.tag == "HeroBullet")
+        {
+            invincible = true;
+            Bullet bullet = coll.gameObject.GetComponent<HeroPistolBullet>();
+            health -= bullet.Damage;
+            if(health <= 0)
+            {
+                hero.score += score;
+                Destroy(gameObject);
+            }
+            Destroy(coll.gameObject);
+        }
     }
 }

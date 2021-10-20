@@ -10,17 +10,13 @@ public class GUIPanel : MonoBehaviour
     public Sprite healthEmpty;
     public Sprite healthFull;
     public InRoom heroInRoom;
+    public static int game = 0; //0表示游戏中，-1表示游戏失败，1表示游戏获胜
 
     Text goalText;
     Text bulletNumText;
     Text roomNumText;
     List<Image> healthImages;
-    List<String> buttonsName;
-    // Button reloadButton;
-    void Awake() 
-    {
-
-    }
+    List<String> buttonsName;  //Button reloadButton;
 
     void Start() 
     {
@@ -44,7 +40,7 @@ public class GUIPanel : MonoBehaviour
         {
             for(int i=0; i<20; i++)
             {
-                trans = healthPanel.Find("H"+i);
+                trans = healthPanel.Find("H"+i); 
                 if(trans == null) 
                     break;
                 healthImages.Add(trans.GetComponent<Image>());
@@ -83,9 +79,21 @@ public class GUIPanel : MonoBehaviour
     void Update() 
     {
         //显示得分
-        goalText.text = "your goal\n"+hero.score.ToString();
+        if(game == 0)
+        {
+            goalText.text = "your goal\n"+hero.score.ToString();
+        }
+        else if(game == 1)
+        {
+            goalText.text = "Congratulate\n"+"You finished";
+        }
+        else
+        {
+            goalText.text = "So Sad\n"+"You die";
+        }
         //显示生命值
         int health = hero.Health;
+
         for(int i=0; i<healthImages.Count; i++)
         {
             if(health >= 1)

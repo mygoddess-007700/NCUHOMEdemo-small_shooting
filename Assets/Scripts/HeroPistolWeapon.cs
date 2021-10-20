@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class HeroPistolWeapon : Weapon
 {
-    public enum HeroPistolWeaponMode{idle, shoot, destroy};
+    public enum HeroPistolWeaponMode{idle, shoot};
 
     [Header("Set In Inspector: HeroPistolWeapon")]
     public Hero hero;
@@ -13,22 +13,16 @@ public class HeroPistolWeapon : Weapon
     protected override void Start() 
     {
         base.Start();
+        Transform trans = transform.Find("Pistol");
+        bulletAnchorTrans = trans.Find("Bullet_Anchor"); 
     }
 
     void Update()
     {
-        switch(mode)
-        {
-            case HeroPistolWeaponMode.destroy:
-                if(bullet != null)
-                    DestroyBullet();
-                break;
-        }
-
         Direction2D = hero.dir;
         if(this.gameObject.activeSelf)
         {
-            if(Input.GetMouseButton(0) && Time.time >= TimeShootNext && hero.bulletNum > 0)
+            if(Input.GetMouseButton(0) && Time.time-generatedTime >= TimeShootNext && hero.bulletNum > 0)
             {
                 GameObject goBullet = Instantiate<GameObject>(prefabBullet);
                 goBullet.transform.rotation = bulletAnchorTrans.rotation;
@@ -36,14 +30,9 @@ public class HeroPistolWeapon : Weapon
                 goBullet.transform.parent = bulletAnchorTrans;
                 goBullet.transform.localPosition = new Vector3(0, 0, 0);
                 mode = HeroPistolWeaponMode.shoot;
-                TimeShootNext = Time.time + ShootDelay;
-                TimeShootDone = Time.time + ShootDuration;
+                TimeShootNext = Time.time-generatedTime + ShootDelay;
+                TimeShootDone = Time.time-generatedTime + ShootDuration;
                 Shooting();
-            }
-
-            if(Time.time >= TimeShootDone && mode == HeroPistolWeaponMode.shoot)
-            {
-                mode = HeroPistolWeaponMode.destroy;
             }
         }  
     }
@@ -53,11 +42,6 @@ public class HeroPistolWeapon : Weapon
         hero.bulletNum--;
         bullet.dir = Direction2D;
         bullet.mode = Bullet.BulletMode.gOut;
-    }
-
-    protected override void DestroyBullet()
-    {
-        Destroy(bullet.gameObject);
-        mode = HeroPistolWeaponMode.idle;
+        bullet.liveDone = TimeShootNext;
     }
 }

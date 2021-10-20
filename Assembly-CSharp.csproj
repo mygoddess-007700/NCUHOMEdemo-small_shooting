@@ -38,16 +38,25 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\InRoom.cs" />
      <Compile Include="Assets\Scripts\Enemy.cs" />
+     <Compile Include="Assets\Scripts\DoorWall.cs" />
      <Compile Include="Assets\Scripts\Main.cs" />
+     <Compile Include="Assets\Scripts\Room1.cs" />
      <Compile Include="Assets\Scripts\HeroPistolWeapon.cs" />
      <Compile Include="Assets\Scripts\IWeapon.cs" />
+     <Compile Include="Assets\Scripts\Room.cs" />
      <Compile Include="Assets\Scripts\Bullet.cs" />
      <Compile Include="Assets\Scripts\Weapon.cs" />
+     <Compile Include="Assets\Scripts\EnemyPistolBullet.cs" />
      <Compile Include="Assets\Scripts\GUIPanel.cs" />
-     <Compile Include="Assets\Scripts\Hero.cs" />
-     <Compile Include="Assets\Scripts\EnemyPistolWeapon.cs" />
      <Compile Include="Assets\Scripts\CloseEnemy.cs" />
+     <Compile Include="Assets\Scripts\HeroPistolBullet.cs" />
+     <Compile Include="Assets\Scripts\Hero.cs" />
      <Compile Include="Assets\Scripts\PistolEnemy.cs" />
+     <Compile Include="Assets\Scripts\FolowCam.cs" />
+     <Compile Include="Assets\Scripts\EnemyPistolWeapon.cs" />
+     <Compile Include="Assets\Scripts\Cover.cs" />
+     <Compile Include="Assets\Scripts\SceneBeginScript\BeginGame.cs" />
+     <Compile Include="Assets\Scripts\ScenePreface\TurnToBegin.cs" />
     <Reference Include="UnityEngine">
         <HintPath>D:/study/learning_software/unity/2020.3.20f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>

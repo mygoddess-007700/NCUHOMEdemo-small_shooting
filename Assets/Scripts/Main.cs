@@ -1,22 +1,38 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Main : MonoBehaviour
 {
-    private static Main main;
-    public enum BulletType{bullet, shell, laser};
+    [Header("Set In Inspector")]
+    public Hero hero;
+    public Material groundMat;
 
-    void Awake() 
+    [Header("Set Dynamically")]
+    public Rigidbody heroRigid;
+
+    void Start() 
     {
-        main = this;   
+        heroRigid = hero.transform.GetComponent<Rigidbody>(); 
+        heroRigid.velocity = Vector3.zero;   
     }
 
-    public static Vector2 mousePos2D()
+    void Update() 
     {
-        Vector3 mousePos = Input.mousePosition;
-        mousePos.z = 0;
-        mousePos = Camera.main.ScreenToWorldPoint(mousePos);
-        return (Vector2)mousePos;
+        if(hero.score >= 2000)
+        {
+            heroRigid.velocity = Vector3.right;
+            FolowCam.POI = hero.gameObject;
+        }
+        if(hero.transform.position.x > 34f)
+        {
+            heroRigid.velocity = Vector3.zero;
+            FolowCam.POI = null;
+            GUIPanel.game = 1;
+            groundMat.color = Color.grey;
+        }
+        if(hero.transform.position.x > 39f) 
+        {
+            GUIPanel.game = 1;
+            groundMat.color = Color.grey;
+        }   
     }
 }

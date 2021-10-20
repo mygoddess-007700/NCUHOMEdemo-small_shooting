@@ -1,35 +1,31 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour, IWeapon
 {
     [Header("Set In Inspector: Weapon")]
-    public int damage = 1;
     public float shootDuration = 0.25f;
     public float shootDelay = 1f; //目前shootDelay要大于shootDuration
     public GameObject prefabBullet;
+
     private Vector2 dir = Vector2.zero;
     private float timeShootDone = 0;
     private float timeShootNext = 0;
 
-
+    protected float generatedTime = 0;
     protected Transform bulletAnchorTrans;
     protected Bullet bullet;
 
+    protected abstract void Shooting();
+
     protected virtual void Start() 
     {
-        Transform trans = transform.Find("HeroPistol");
-        bulletAnchorTrans = trans.Find("Bullet_Anchor"); 
+        generatedTime = Time.time;
     }
 
-    protected abstract void Shooting();
-    protected abstract void DestroyBullet();
-
-    public int Damage
-    {
-        get{return damage;}
-    }
+    // protected virtual void Start() 
+    // {
+    //     generatedTime = Time.time;    
+    // }
 
     public Vector2 Direction2D
     {
