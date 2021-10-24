@@ -9,10 +9,11 @@ public class EnemyPistolWeapon : Weapon
 
     private SpriteRenderer pistolSRend;
     private Enemy enemy;
+    private float generatedTime = 0;
 
-    protected override void Start() 
+    void Start() 
     {
-        base.Start();
+        generatedTime = Time.time;
         Transform trans = transform.Find("Pistol");
         bulletAnchorTrans = trans.Find("Bullet_Anchor"); 
         pistolSRend = trans.GetComponent<SpriteRenderer>();

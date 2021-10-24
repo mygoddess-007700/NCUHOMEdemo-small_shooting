@@ -4,28 +4,17 @@ public abstract class Weapon : MonoBehaviour, IWeapon
 {
     [Header("Set In Inspector: Weapon")]
     public float shootDuration = 0.25f;
-    public float shootDelay = 1f; //目前shootDelay要大于shootDuration
+    public float shootDelay = 0.8f; //目前shootDelay要大于shootDuration
     public GameObject prefabBullet;
 
     private Vector2 dir = Vector2.zero;
     private float timeShootDone = 0;
     private float timeShootNext = 0;
 
-    protected float generatedTime = 0;
     protected Transform bulletAnchorTrans;
     protected Bullet bullet;
 
     protected abstract void Shooting();
-
-    protected virtual void Start() 
-    {
-        generatedTime = Time.time;
-    }
-
-    // protected virtual void Start() 
-    // {
-    //     generatedTime = Time.time;    
-    // }
 
     public Vector2 Direction2D
     {

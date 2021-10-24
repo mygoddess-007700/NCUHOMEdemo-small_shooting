@@ -10,31 +10,37 @@ public class HeroPistolWeapon : Weapon
     [Header("Set Dynamically: HeroPistolWeapon")]
     public HeroPistolWeaponMode mode = HeroPistolWeaponMode.idle;
 
-    protected override void Start() 
+    void Start() 
     {
-        base.Start();
         Transform trans = transform.Find("Pistol");
         bulletAnchorTrans = trans.Find("Bullet_Anchor"); 
     }
 
-    void Update()
+    void LateUpdate()
     {
         Direction2D = hero.dir;
-        if(this.gameObject.activeSelf)
+        if(Input.mousePosition.x > 1760)
         {
-            if(Input.GetMouseButton(0) && Time.time-generatedTime >= TimeShootNext && hero.bulletNum > 0)
-            {
-                GameObject goBullet = Instantiate<GameObject>(prefabBullet);
-                goBullet.transform.rotation = bulletAnchorTrans.rotation;
-                bullet = goBullet.GetComponent<Bullet>();
-                goBullet.transform.parent = bulletAnchorTrans;
-                goBullet.transform.localPosition = new Vector3(0, 0, 0);
-                mode = HeroPistolWeaponMode.shoot;
-                TimeShootNext = Time.time-generatedTime + ShootDelay;
-                TimeShootDone = Time.time-generatedTime + ShootDuration;
-                Shooting();
-            }
-        }  
+            return;
+        }
+        if(Input.GetMouseButton(0))
+        {
+            print("aaa");
+        }
+        print(Time.time);
+        if(Input.GetMouseButton(0) && Time.time >= TimeShootNext && hero.bulletNum > 0)
+        {
+            print("fxd");
+            GameObject goBullet = Instantiate<GameObject>(prefabBullet);
+            goBullet.transform.rotation = bulletAnchorTrans.rotation;
+            bullet = goBullet.GetComponent<Bullet>();
+            goBullet.transform.parent = bulletAnchorTrans;
+            goBullet.transform.localPosition = new Vector3(0, 0, 0);
+            mode = HeroPistolWeaponMode.shoot;
+            TimeShootNext = Time.time + ShootDelay;
+            TimeShootDone = Time.time + ShootDuration;
+            Shooting();
+        }
     }
 
     protected override void Shooting()

@@ -68,6 +68,23 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
     }
 
+    protected virtual void OnTriggerEnter(Collider colld) 
+    {
+        invincibleDone = Time.time-generatedTime + invincibleDuration;
+        if(colld.gameObject.tag == "HeroBullet")
+        {
+            invincible = true;
+            Bullet bullet = colld.gameObject.GetComponent<HeroPistolBullet>();
+            health -= bullet.Damage;
+            if(health <= 0)
+            {
+                hero.score += score;
+                Destroy(gameObject);
+            }
+            Destroy(colld.gameObject);
+        }
+    }
+
     public Vector2 Direction2D
     {
         get{return dir;}

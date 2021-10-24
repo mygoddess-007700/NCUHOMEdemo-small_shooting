@@ -89,21 +89,4 @@ public class PistolEnemy : Enemy
                 rotationCenter.transform.rotation = Quaternion.Euler(0, 0, 0); 
         }
     }
-
-    void OnCollisionEnter(Collision coll) 
-    {
-        invincibleDone = Time.time-generatedTime + invincibleDuration;
-        if(coll.gameObject.tag == "HeroBullet")
-        {
-            invincible = true;
-            Bullet bullet = coll.gameObject.GetComponent<Bullet>();
-            health -= bullet.Damage;
-            if(health <= 0)
-            {
-                hero.score += score;
-                Destroy(gameObject);
-            }
-            Destroy(coll.gameObject);
-        }
-    }
 }

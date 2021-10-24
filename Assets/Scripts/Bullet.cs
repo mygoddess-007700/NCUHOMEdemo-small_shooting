@@ -8,7 +8,7 @@ public abstract class Bullet : MonoBehaviour
     [Header("Set Dynamically")]
     public BulletMode mode = BulletMode.idle;
     public Vector2 dir = Vector2.zero;
-    public float liveDone;
+    public float liveDone = 5f;
     protected float generatedTime = 0;
     protected Rigidbody rigid;
 
