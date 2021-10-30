@@ -23,14 +23,8 @@ public class HeroPistolWeapon : Weapon
         {
             return;
         }
-        if(Input.GetMouseButton(0))
-        {
-            print("aaa");
-        }
-        print(Time.time);
         if(Input.GetMouseButton(0) && Time.time >= TimeShootNext && hero.bulletNum > 0)
         {
-            print("fxd");
             GameObject goBullet = Instantiate<GameObject>(prefabBullet);
             goBullet.transform.rotation = bulletAnchorTrans.rotation;
             bullet = goBullet.GetComponent<Bullet>();
@@ -39,6 +33,7 @@ public class HeroPistolWeapon : Weapon
             mode = HeroPistolWeaponMode.shoot;
             TimeShootNext = Time.time + ShootDelay;
             TimeShootDone = Time.time + ShootDuration;
+
             Shooting();
         }
     }

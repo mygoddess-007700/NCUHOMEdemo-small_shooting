@@ -92,7 +92,7 @@ public class Hero : MonoBehaviour
     {
         if(Health == 0)
         {
-            groundMat.color = Color.white;
+            groundMat.color = Color.green;
             GUIPanel.game = -1;
         }
         //确认是否受击，如果受击施加无敌
@@ -141,14 +141,16 @@ public class Hero : MonoBehaviour
 
     void OnTriggerEnter(Collider colld) 
     {
-        if(invincible) 
-        {
-            Destroy(colld.gameObject);
-            return;
-        }
+
 
         if(colld.gameObject.tag == "Enemy")
         {
+            if(invincible) 
+            {
+                Destroy(colld.gameObject);
+                return;
+            }
+
             invincibleDone = Time.time + invincibleDuration;
             invincible = true;
             Enemy enemy = colld.gameObject.GetComponent<Enemy>();
@@ -157,6 +159,12 @@ public class Hero : MonoBehaviour
         }
         else if(colld.gameObject.tag == "EnemyBullet")
         {
+            if(invincible) 
+            {
+                Destroy(colld.gameObject);
+                return;
+            }
+
             invincibleDone = Time.time + invincibleDuration;
             invincible = true;
             Bullet bullet = colld.gameObject.GetComponent<Bullet>();
