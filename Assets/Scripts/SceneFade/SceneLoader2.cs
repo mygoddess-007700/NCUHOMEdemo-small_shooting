@@ -10,6 +10,7 @@ public class SceneLoader2 : MonoBehaviour
     [Header("Set In Inspector")]
     public Button btnA;
     public Button btnB;
+    public Button btnC;
     public Animator animTop;
     public Animator animDown;
     public Animator animLOGO;
@@ -24,6 +25,7 @@ public class SceneLoader2 : MonoBehaviour
 
         btnA.onClick.AddListener(LoadSceneA);
         btnB.onClick.AddListener(LoadSceneB);
+        btnC.onClick.AddListener(LoadSceneC);
     }
 
     private void LoadSceneA()
@@ -32,6 +34,11 @@ public class SceneLoader2 : MonoBehaviour
     }
 
     private void LoadSceneB()
+    {
+        StartCoroutine(LoadScene(2));
+    }
+
+    private void LoadSceneC()
     {
         StartCoroutine(LoadScene(2));
     }
