@@ -30,17 +30,17 @@ public class SceneBegin : MonoBehaviour
 
     private void LoadSceneA()
     {
-        StartCoroutine(LoadScene(2));
+        StartCoroutine(LoadScene(SceneManager.GetActiveScene().buildIndex+1));
     }
 
     private void LoadSceneB()
     {
-        StartCoroutine(LoadScene(2));
+        StartCoroutine(LoadScene(3));
     }
 
     private void LoadSceneC()
     {
-        StartCoroutine(LoadScene(2));
+        StartCoroutine(LoadScene(3));
     }
 
     IEnumerator LoadScene(int index)

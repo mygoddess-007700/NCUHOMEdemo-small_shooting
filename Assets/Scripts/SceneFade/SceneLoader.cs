@@ -9,27 +9,13 @@ public class SceneLoader : MonoBehaviour
 {
     [Header("Set In Inspector")]
     public GameObject eventObj;
-    public Button btnA;
-    public Button btnB;
     public Animator animator;
 
     void Start() 
     {
         GameObject.DontDestroyOnLoad(this.gameObject);
-        GameObject.DontDestroyOnLoad(eventObj);    
-
-        btnA.onClick.AddListener(LoadSceneA);
-        btnB.onClick.AddListener(LoadSceneB);
-    }
-
-    private void LoadSceneA()
-    {
+        GameObject.DontDestroyOnLoad(eventObj); 
         StartCoroutine(LoadScene(1));
-    }
-
-    private void LoadSceneB()
-    {
-        StartCoroutine(LoadScene(2));
     }
 
     IEnumerator LoadScene(int index)
