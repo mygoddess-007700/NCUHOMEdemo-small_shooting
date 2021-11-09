@@ -2,10 +2,9 @@ using UnityEngine;
 
 public class EnemyPistolWeapon : Weapon
 {
-    public enum EnemyPistolWeaponMode{idle, move, readyShoot, shoot, destroy};
 
     [Header("Set Dynamically: EnemyPistolWeapon")]
-    public EnemyPistolWeaponMode mode = EnemyPistolWeaponMode.idle;
+    public WeaponMode mode = WeaponMode.idle;
 
     private SpriteRenderer pistolSRend;
     private Enemy enemy;
@@ -26,11 +25,8 @@ public class EnemyPistolWeapon : Weapon
         {
             switch(enemy.mode)
             {
-                case Enemy.eMode.move:
-                    mode = EnemyPistolWeaponMode.move;
-                    break;
                 case Enemy.eMode.readyShoot:
-                    mode = EnemyPistolWeaponMode.readyShoot;
+                    mode = WeaponMode.readyShoot;
                     BeforeShootingTime();
                     break;
                 case Enemy.eMode.shoot:
@@ -43,7 +39,7 @@ public class EnemyPistolWeapon : Weapon
                         goBullet.transform.parent = bulletAnchorTrans;
                         goBullet.transform.localPosition = new Vector3(0, 0, 0);
                         TimeShootNext = Time.time-generatedTime + ShootDelay;
-                        mode = EnemyPistolWeaponMode.shoot;
+                        mode = WeaponMode.shoot;
                         Shooting();
                     }
                     break;
@@ -53,7 +49,7 @@ public class EnemyPistolWeapon : Weapon
 
     private void BeforeShootingTime()
     {
-        if(mode == EnemyPistolWeaponMode.readyShoot)
+        if(mode == WeaponMode.readyShoot)
         {
             if(((int)(Time.time/0.08))%2 == 0)
                 pistolSRend.enabled = false;

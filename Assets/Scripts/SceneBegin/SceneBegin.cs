@@ -25,7 +25,7 @@ public class SceneBegin : MonoBehaviour
 
         btnA.onClick.AddListener(LoadSceneA);
         btnB.onClick.AddListener(LoadSceneB);
-        btnC.onClick.AddListener(LoadSceneC);
+        btnC.onClick.AddListener(ExitGame);
     }
 
     private void LoadSceneA()
@@ -61,6 +61,11 @@ public class SceneBegin : MonoBehaviour
         animTop.CrossFade("TopFadeOut", 0);
         animDown.CrossFade("DownFadeOut", 0);
         animLOGO.CrossFade("LOGOFadeOut", 0);
+    }
+
+    private void ExitGame()
+    {
+        Application.Quit();
     }
 
 }

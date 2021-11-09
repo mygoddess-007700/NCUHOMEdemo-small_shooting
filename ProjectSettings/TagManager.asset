@@ -9,6 +9,9 @@ TagManager:
   - HeroBullet
   - EnemyBullet
   - Rocket
+  - EnemyPistolBullet
+  - EnemyRocketBullet
+  - Grappler
   layers:
   - Default
   - TransparentFX

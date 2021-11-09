@@ -1,14 +1,14 @@
+using System.Collections;
 using UnityEngine;
 
 public class HeroPistolWeapon : Weapon
 {
-    public enum HeroPistolWeaponMode{idle, shoot};
-
     [Header("Set In Inspector: HeroPistolWeapon")]
     public Hero hero;
+    public float reloadTime = 2f;
 
     [Header("Set Dynamically: HeroPistolWeapon")]
-    public HeroPistolWeaponMode mode = HeroPistolWeaponMode.idle;
+    bool ifReload = false;
 
     void Start() 
     {
@@ -16,12 +16,17 @@ public class HeroPistolWeapon : Weapon
         bulletAnchorTrans = trans.Find("Bullet_Anchor"); 
     }
 
-    void LateUpdate()
+    void Update()
     {
         Direction2D = hero.dir;
-        print(Input.mousePosition.x);
-        if(Input.mousePosition.x > 1760)
+        if(Input.mousePosition.x > Screen.width * 0.8)
         {
+            return;
+        }
+        if(hero.bulletNum == 0 && !ifReload)
+        {
+            ifReload = true;
+            StartCoroutine("Reload");
             return;
         }
         if(Input.GetMouseButton(0) && Time.time >= TimeShootNext && hero.bulletNum > 0)
@@ -31,7 +36,6 @@ public class HeroPistolWeapon : Weapon
             bullet = goBullet.GetComponent<Bullet>();
             goBullet.transform.parent = bulletAnchorTrans;
             goBullet.transform.localPosition = new Vector3(0, 0, 0);
-            mode = HeroPistolWeaponMode.shoot;
             TimeShootNext = Time.time + ShootDelay;
             // TimeShootDone = Time.time + ShootDuration;
 
@@ -45,5 +49,12 @@ public class HeroPistolWeapon : Weapon
         bullet.dir = Direction2D;
         bullet.mode = Bullet.BulletMode.gOut;
         bullet.liveDone = TimeShootNext;
+    }
+
+    IEnumerator Reload()
+    {
+        yield return new WaitForSeconds(reloadTime);
+        hero.bulletNum = hero.maxBulletNum;
+        ifReload = false;
     }
 }

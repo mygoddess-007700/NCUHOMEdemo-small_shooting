@@ -36,6 +36,7 @@ public class DoorWall : MonoBehaviour
         inRoom = GetComponent<InRoom>();
     }
 
+
     void Update() 
     {
         if(hasHero && timeEnemyNext[0] <= firstEnemyTimeMax)

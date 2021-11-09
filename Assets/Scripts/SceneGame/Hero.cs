@@ -51,11 +51,6 @@ public class Hero : MonoBehaviour
     private Vector3 rightBulletPosition;
     private Vector3 leftBulletPosition;
 
-    private Vector3[] directions = new Vector3[]
-    {
-        Vector3.right, Vector3.up, Vector3.left, Vector3.down
-    };
-
     void Awake() 
     {
         anim = GetComponent<Animator>();
@@ -86,6 +81,14 @@ public class Hero : MonoBehaviour
 
     void Update() 
     {
+        if(Health <= 0)
+        {
+            SceneManager.LoadScene("SceneEnd");
+        }
+        if(Input.mousePosition.x > Screen.width * 0.8)
+        {
+            return;
+        }
         //根据鼠标位置更改人的左右与枪的左右与枪的旋转
         //计算鼠标位置(单位化)
         dir = mousePos2D() - (Vector2)transform.position;
@@ -113,7 +116,10 @@ public class Hero : MonoBehaviour
             bullet_Anchor.transform.localPosition = leftBulletPosition;
             rotationCenter.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan(dir.y/dir.x)*(180/Mathf.PI));
         }
-
+    }
+    
+    void LateUpdate() 
+    {
         switch(mode)
         {
             case eMode.idle:
@@ -138,7 +144,7 @@ public class Hero : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider colld) 
-    {
+    { 
         if(colld.gameObject.tag == "Enemy")
         {
             if(eMode.invincible == mode) 
@@ -153,7 +159,7 @@ public class Hero : MonoBehaviour
             Health -= enemy.closeDamage;
             Destroy(colld.gameObject);
         }
-        else if(colld.gameObject.tag == "EnemyBullet")
+        else if(colld.gameObject.tag == "EnemyPistolBullet")
         {
             if(eMode.invincible == mode) 
             {
@@ -167,10 +173,28 @@ public class Hero : MonoBehaviour
             Health -= bullet.Damage;
             Destroy(colld.gameObject);
         }
-        else
+        else if(colld.gameObject.tag == "EnemyRocketBullet")
         {
+            if(eMode.invincible == mode) 
+            {
+                Destroy(colld.gameObject);
+                return;
+            }
+
+            invincibleDone = Time.time + invincibleDuration;
+            mode = eMode.invincible;
+            Bullet bullet = colld.gameObject.GetComponent<Bullet>();
+            Health -= bullet.Damage;
+            FollowCam.POI = this.gameObject;
+            Destroy(colld.gameObject);
             return;
-        } 
+        }
+        else if(colld.gameObject.tag == "Grappler")
+        {
+            hasGrappler = true;
+            Destroy(colld.gameObject);
+            return;
+        }
     }
 
     public Vector2 mousePos2D()
@@ -183,6 +207,6 @@ public class Hero : MonoBehaviour
 
     void HeroDie()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
