@@ -1,5 +1,9 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/Scenes/SceneGame.unity
+=======
+- path: Assets/Scenes/test.unity
+>>>>>>> div
   isLoaded: 1
   isActive: 1
   isSubScene: 0

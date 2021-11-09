@@ -2,6 +2,7 @@ using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour, IWeapon
 {
+    public enum WeaponMode{idle, readyShoot, shoot};
     [Header("Set In Inspector: Weapon")]
     public float shootDelay = 0.4f; //目前shootDelay要大于shootDuration
     // public float shootDuration = 0.25f;

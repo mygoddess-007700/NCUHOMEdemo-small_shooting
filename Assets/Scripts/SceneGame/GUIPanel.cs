@@ -1,7 +1,15 @@
+<<<<<<< HEAD
+=======
+using System.Net.Mime;
+>>>>>>> div
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+<<<<<<< HEAD
+=======
+using UnityEngine.SceneManagement;
+>>>>>>> div
 
 public class GUIPanel : MonoBehaviour
 {
@@ -9,15 +17,28 @@ public class GUIPanel : MonoBehaviour
     public Hero hero;
     public Sprite healthEmpty;
     public Sprite healthFull;
+<<<<<<< HEAD
     public InRoom heroInRoom;
     public bool hasGrappler;
+=======
+    public Image pistolPanelImage;
+    public InRoom heroInRoom;
+>>>>>>> div
     public GameObject grappler;
     public Text goalText;
     public Text bulletNumText;
     public Text roomNumText;
     public Button outingButton;
+<<<<<<< HEAD
 
     private List<Image> healthImages;
+=======
+    public float smooth = 0.5f;
+    public int roomNum = 1;
+
+    private List<Image> healthImages;
+    public Color pistolPanelImageColor;
+>>>>>>> div
 
     void Start() 
     {
@@ -43,6 +64,10 @@ public class GUIPanel : MonoBehaviour
                 healthImages.Add(trans.GetComponent<Image>());
             }
         }
+<<<<<<< HEAD
+=======
+        pistolPanelImageColor = pistolPanelImage.color;
+>>>>>>> div
         //子弹数面板
         // Transform bulletPanel = transform.Find("BulletPanel");
         // if(bulletPanel != null)
@@ -78,6 +103,10 @@ public class GUIPanel : MonoBehaviour
     void Update() 
     {
         //显示得分
+<<<<<<< HEAD
+=======
+        goalText.text = "your goal\n"+hero.score.ToString();
+>>>>>>> div
         // if(game == 0)
         // {
         //     goalText.text = "your goal\n"+hero.score.ToString();
@@ -90,7 +119,11 @@ public class GUIPanel : MonoBehaviour
         // {
         //     goalText.text = "So Sad\n"+"You die";
         // }
+<<<<<<< HEAD
         if(hasGrappler)
+=======
+        if(hero.hasGrappler)
+>>>>>>> div
         {
             grappler.SetActive(true);
         }
@@ -111,12 +144,30 @@ public class GUIPanel : MonoBehaviour
         }
         //显示子弹数
         bulletNumText.text = "×"+hero.bulletNum.ToString();
+<<<<<<< HEAD
         //显示房间数
         roomNumText.text = "Room："+((heroInRoom.RoomNum.x+1)+InRoom.xRoom*heroInRoom.RoomNum.y).ToString();
+=======
+        if(0 == hero.bulletNum)
+        {
+            // pistolPanelImage.color = Color.Lerp(pistolPanelImageColor, Color.black, smooth*Time.deltaTime);
+            pistolPanelImage.color = Color.black;
+        }
+        else
+        {
+            pistolPanelImage.color = pistolPanelImageColor;
+        }
+        //显示房间数
+        roomNumText.text = "Room："+roomNum.ToString();
+>>>>>>> div
     }
 
     void outingButtonClick()
     {
+<<<<<<< HEAD
         print("hahaha");
+=======
+        SceneManager.LoadScene("SceneBegin");
+>>>>>>> div
     }
 }

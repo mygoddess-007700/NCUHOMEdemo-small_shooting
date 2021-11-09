@@ -21,7 +21,6 @@ public class Enemy : MonoBehaviour
 
     protected float invincibleDone = 0;
     protected Vector2 dir = Vector2.zero;
-
     protected Animator anim;
     protected Rigidbody rigid;
     protected SpriteRenderer sRend;
@@ -70,9 +69,9 @@ public class Enemy : MonoBehaviour
 
     protected virtual void OnTriggerEnter(Collider colld) 
     {
-        invincibleDone = Time.time-generatedTime + invincibleDuration;
         if(colld.gameObject.tag == "HeroBullet")
         {
+            invincibleDone = Time.time-generatedTime + invincibleDuration;
             invincible = true;
             Bullet bullet = colld.gameObject.GetComponent<HeroPistolBullet>();
             health -= bullet.Damage;

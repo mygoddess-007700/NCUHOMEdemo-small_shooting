@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class InRoom : MonoBehaviour
@@ -7,7 +5,7 @@ public class InRoom : MonoBehaviour
     static public float ROOM_W = 16;
     static public float ROOM_H = 11;
     static public int xRoom = 3;
-    static public int yRoom = 2;
+    static public int yRoom = 4;
 
     //角色在当前房间里的坐标位置
     public Vector2 RoomPos //也设置成二维，用来配合RoomNum，z为0

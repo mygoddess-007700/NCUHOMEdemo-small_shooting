@@ -146,6 +146,12 @@ MonoBehaviour:
   speed: 0.5
   moveDuration: 1.5
   readyShootDuration: 0.5
+  weaponSprite:
+  - {fileID: 21300000, guid: 299ece4f4a761e54380b2c86fc2e4144, type: 3}
+  - {fileID: 21300000, guid: 7fa11c3de0fc1b84d8ba1e6b39214bd0, type: 3}
+  rotationCenter: {fileID: 2619574260326849209}
+  weapon: {fileID: 2619574260299117288}
+  bullet_Anchor: {fileID: 2619574260951801604}
 --- !u!54 &-5803761780819089722
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -301,7 +307,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5389f490edf19664e89f97a366d83e0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootDuration: 0.25
   shootDelay: 1
   prefabBullet: {fileID: 3641509038397343720, guid: b388bfabc0db94e4a8805893e52fffbf, type: 3}
   mode: 0

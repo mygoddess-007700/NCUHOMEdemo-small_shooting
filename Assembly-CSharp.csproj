@@ -36,11 +36,22 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+<<<<<<< HEAD
      <Compile Include="Assets\Scripts\SceneGame\InRoom.cs" />
      <Compile Include="Assets\Scripts\SceneGame\Enemy.cs" />
      <Compile Include="Assets\Scripts\SceneGame\DoorWall.cs" />
      <Compile Include="Assets\Scripts\SceneGame\Main.cs" />
      <Compile Include="Assets\Scripts\SceneGame\Room1.cs" />
+=======
+     <Compile Include="Assets\Scripts\SceneGame\Room3.cs" />
+     <Compile Include="Assets\Scripts\SceneGame\InRoom.cs" />
+     <Compile Include="Assets\Scripts\SceneGame\Enemy.cs" />
+     <Compile Include="Assets\Scripts\SceneGame\EnemyRocketBullet.cs" />
+     <Compile Include="Assets\Scripts\SceneGame\DoorWall.cs" />
+     <Compile Include="Assets\Scripts\SceneGame\Main.cs" />
+     <Compile Include="Assets\Scripts\SceneGame\Room1.cs" />
+     <Compile Include="Assets\Scripts\SceneGame\Room2.cs" />
+>>>>>>> div
      <Compile Include="Assets\Scripts\SceneGame\HeroPistolWeapon.cs" />
      <Compile Include="Assets\Scripts\SceneGame\IWeapon.cs" />
      <Compile Include="Assets\Scripts\SceneFade\SceneLoader2.cs" />
@@ -48,25 +59,51 @@
      <Compile Include="Assets\Scripts\SceneGame\Room.cs" />
      <Compile Include="Assets\Scripts\SceneBegin\SceneBegin.cs" />
      <Compile Include="Assets\Scripts\SceneGame\Bullet.cs" />
+<<<<<<< HEAD
      <Compile Include="Assets\Scripts\SceneGame\Weapon.cs" />
      <Compile Include="Assets\Scripts\SceneFade\SceneLoader.cs" />
      <Compile Include="Assets\Scripts\SceneGame\EnemyPistolBullet.cs" />
+=======
+     <Compile Include="Assets\Scripts\SceneGame\Grapple.cs" />
+     <Compile Include="Assets\Scripts\SceneGame\Weapon.cs" />
+     <Compile Include="Assets\Scripts\SceneGame\EnemyRocketWeapon.cs" />
+     <Compile Include="Assets\Scripts\SceneFade\SceneLoader.cs" />
+     <Compile Include="Assets\Scripts\SceneGame\EnemyPistolBullet.cs" />
+     <Compile Include="Assets\Scripts\SceneGame\HeroMove.cs" />
+     <Compile Include="Assets\Scripts\SceneGame\Room4.cs" />
+>>>>>>> div
      <Compile Include="Assets\Scripts\SceneGame\LoadManager.cs" />
      <Compile Include="Assets\Scripts\SceneGame\GUIPanel.cs" />
      <Compile Include="Assets\Scripts\SceneGame\CloseEnemy.cs" />
      <Compile Include="Assets\Scripts\SceneGame\HeroPistolBullet.cs" />
      <Compile Include="Assets\Scripts\SceneGame\Hero.cs" />
      <Compile Include="Assets\Scripts\ScenePreface\ScenePreface.cs" />
+<<<<<<< HEAD
      <Compile Include="Assets\Scripts\SceneGame\PistolEnemy.cs" />
      <Compile Include="Assets\Scripts\SceneGame\FolowCam.cs" />
      <Compile Include="Assets\Scripts\SceneGame\EnemyPistolWeapon.cs" />
      <Compile Include="Assets\Scripts\SceneGame\Cover.cs" />
+=======
+     <Compile Include="Assets\Scripts\SceneGame\RemoteEnemy.cs" />
+     <Compile Include="Assets\Scripts\SceneGame\FollowCam.cs" />
+     <Compile Include="Assets\Scripts\SceneGame\EnemyPistolWeapon.cs" />
+     <Compile Include="Assets\Scripts\SceneGame\Cover.cs" />
+     <Compile Include="Assets\Scripts\SceneEnd\SceneEnd.cs" />
+     <Compile Include="Assets\Scripts\SceneEnd\ReturnButton.cs" />
+     <Compile Include="Assets\Scripts\SceneFinish\SceneFinish.cs" />
+     <Compile Include="Assets\Scripts\SceneBegin\ExitButton.cs" />
+     <None Include="Assets\Resources\EndFile.txt" />
+>>>>>>> div
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
      <None Include="Assets\Fonts\常用汉字库 3500.txt" />
+<<<<<<< HEAD
+=======
+     <None Include="Assets\Resources\FinishFile.txt" />
+>>>>>>> div
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
      <None Include="Assets\Fonts\chinese简繁常用字表.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />

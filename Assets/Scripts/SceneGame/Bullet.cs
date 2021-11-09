@@ -2,7 +2,7 @@ using UnityEngine;
 
 public abstract class Bullet : MonoBehaviour
 {
-    public enum BulletMode{idle, gOut, gInHit, gMiss};
+    public enum BulletMode{idle, gOut};
     public abstract int Damage{get; set;}
 
     [Header("Set Dynamically")]

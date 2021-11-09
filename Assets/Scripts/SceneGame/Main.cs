@@ -20,12 +20,16 @@ public class Main : MonoBehaviour
         if(hero.score >= 2000)
         {
             heroRigid.velocity = Vector3.right;
-            FolowCam.POI = hero.gameObject;
+            FollowCam.POI = hero.gameObject;
         }
         if(hero.transform.position.x > 34f)
         {
             heroRigid.velocity = Vector3.zero;
+<<<<<<< HEAD:Assets/Scripts/SceneGame/Main.cs
             FolowCam.POI = null;
+=======
+            FollowCam.POI = null;
+>>>>>>> div:Assets/Scripts/Main.cs
             groundMat.color = Color.grey;
         }
         if(hero.transform.position.x > 39f) 
