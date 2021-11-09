@@ -13,6 +13,7 @@ public class Grapple : MonoBehaviour
     public float grappleLength = 4;
     public float grappleInLength = 0.5f;
     public int unsafeTileHealthPenalty = 2;
+    public GUIPanel gui;
 
     [Header("Set Dynamically")]
     public eMode mode = eMode.none;
@@ -47,7 +48,7 @@ public class Grapple : MonoBehaviour
         {
             case eMode.none:
                 //如果按下抓取键
-                if(Input.GetMouseButtonDown(1))
+                if(gui.grapplerButtonIsPressed)
                 {
                     dir = hero.dir;
                     StartGrapple();
@@ -58,6 +59,7 @@ public class Grapple : MonoBehaviour
 
     void StartGrapple()
     { 
+        gui.grapplerButtonIsPressed = false;
         rigid.velocity = Vector3.zero;
 
         grapHead.SetActive(true);

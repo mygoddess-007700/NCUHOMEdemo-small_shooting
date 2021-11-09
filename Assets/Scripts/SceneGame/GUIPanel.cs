@@ -20,6 +20,8 @@ public class GUIPanel : MonoBehaviour
     public Button outingButton;
     public float smooth = 0.5f;
     public int roomNum = 1;
+    public Button grapplerButton;
+    public bool grapplerButtonIsPressed = false;
 
     private List<Image> healthImages;
     public Color pistolPanelImageColor;
@@ -64,6 +66,7 @@ public class GUIPanel : MonoBehaviour
         //     roomNumText = trans.GetComponent<Text>();
         // }
         grappler.SetActive(false);
+        grapplerButton.onClick.AddListener(IsPressed);
         //退出按钮
         outingButton.onClick.AddListener(outingButtonClick);
         // Transform otherPanel = transform.Find("OtherPanel");
@@ -134,5 +137,10 @@ public class GUIPanel : MonoBehaviour
     void outingButtonClick()
     {
         SceneManager.LoadScene("SceneBegin");
+    }
+
+    void IsPressed()
+    {
+        grapplerButtonIsPressed = true;
     }
 }

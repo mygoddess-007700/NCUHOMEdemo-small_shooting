@@ -36,6 +36,8 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\SceneEnd\ReturnButton.cs" />
+     <Compile Include="Assets\Scripts\SceneBegin\ExitButton.cs" />
      <Compile Include="Assets\Scripts\SceneGame\Room3.cs" />
      <Compile Include="Assets\Scripts\SceneGame\InRoom.cs" />
      <Compile Include="Assets\Scripts\SceneGame\Enemy.cs" />
@@ -58,20 +60,18 @@
      <Compile Include="Assets\Scripts\SceneGame\EnemyPistolBullet.cs" />
      <Compile Include="Assets\Scripts\SceneGame\HeroMove.cs" />
      <Compile Include="Assets\Scripts\SceneGame\Room4.cs" />
+     <Compile Include="Assets\Scripts\SceneFinish\SceneFinish.cs" />
      <Compile Include="Assets\Scripts\SceneGame\LoadManager.cs" />
      <Compile Include="Assets\Scripts\SceneGame\GUIPanel.cs" />
      <Compile Include="Assets\Scripts\SceneGame\CloseEnemy.cs" />
      <Compile Include="Assets\Scripts\SceneGame\HeroPistolBullet.cs" />
+     <Compile Include="Assets\Scripts\SceneEnd\SceneEnd.cs" />
      <Compile Include="Assets\Scripts\SceneGame\Hero.cs" />
      <Compile Include="Assets\Scripts\ScenePreface\ScenePreface.cs" />
      <Compile Include="Assets\Scripts\SceneGame\RemoteEnemy.cs" />
      <Compile Include="Assets\Scripts\SceneGame\FollowCam.cs" />
      <Compile Include="Assets\Scripts\SceneGame\EnemyPistolWeapon.cs" />
      <Compile Include="Assets\Scripts\SceneGame\Cover.cs" />
-     <Compile Include="Assets\Scripts\SceneEnd\SceneEnd.cs" />
-     <Compile Include="Assets\Scripts\SceneEnd\ReturnButton.cs" />
-     <Compile Include="Assets\Scripts\SceneFinish\SceneFinish.cs" />
-     <Compile Include="Assets\Scripts\SceneBegin\ExitButton.cs" />
      <None Include="Assets\Resources\EndFile.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
